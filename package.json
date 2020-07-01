@@ -1,0 +1,29 @@
+{
+  "name": "travelH",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.3.2",
+    "webpack-cli": "^3.3.11"
+  },
+  "devDependencies": {
+    "app": "^0.1.0",
+    "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
+    "jquery": "^3.5.1",
+    "layui-src": "^2.5.5",
+    "style-loader": "^1.2.1",
+    "vue": "^2.6.11",
+    "webpack": "^4.43.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.dao.SoptsDao">
+
+    <resultMap type="com.travel.entity.Sopts" id="SoptsMap">
+        <result property="spotid" column="spotid" jdbcType="OTHER"/>
+        <result property="spotname" column="spotname" jdbcType="VARCHAR"/>
+        <result property="spotcity" column="spotcity" jdbcType="VARCHAR"/>
+        <result property="spotprice" column="spotprice" jdbcType="NUMERIC"/>
+        <result property="soptimg" column="soptimg" jdbcType="VARCHAR"/>
+        <result property="spotgrade" column="spotgrade" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SoptsMap">
+        select
+          spotid, spotname, spotcity, spotprice, soptimg, spotgrade
+        from travel.sopts
+        where spotid = #{spotid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SoptsMap">
+        select
+          spotid, spotname, spotcity, spotprice, soptimg, spotgrade
+        from travel.sopts
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SoptsMap">
+        select
+          spotid, spotname, spotcity, spotprice, soptimg, spotgrade
+        from travel.sopts
+        <where>
+            <if test="spotid != null">
+                and spotid = #{spotid}
+            </if>
+            <if test="spotname != null and spotname != ''">
+                and spotname = #{spotname}
+            </if>
+            <if test="spotcity != null and spotcity != ''">
+                and spotcity = #{spotcity}
+            </if>
+            <if test="spotprice != null">
+                and spotprice = #{spotprice}
+            </if>
+            <if test="soptimg != null and soptimg != ''">
+                and soptimg = #{soptimg}
+            </if>
+            <if test="spotgrade != null and spotgrade != ''">
+                and spotgrade = #{spotgrade}
+            </if>
+        </where>
+    </select>
+    <select id="selectAll" resultMap="SoptsMap">
+        select
+          spotid, spotname, spotcity, spotprice, soptimg, spotgrade
+        from travel.sopts
+    </select>
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="spotid" useGeneratedKeys="true">
+        insert into travel.sopts(spotname, spotcity, spotprice, soptimg, spotgrade)
+        values (#{spotname}, #{spotcity}, #{spotprice}, #{soptimg}, #{spotgrade})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update travel.sopts
+        <set>
+            <if test="spotname != null and spotname != ''">
+                spotname = #{spotname},
+            </if>
+            <if test="spotcity != null and spotcity != ''">
+                spotcity = #{spotcity},
+            </if>
+            <if test="spotprice != null">
+                spotprice = #{spotprice},
+            </if>
+            <if test="soptimg != null and soptimg != ''">
+                soptimg = #{soptimg},
+            </if>
+            <if test="spotgrade != null and spotgrade != ''">
+                spotgrade = #{spotgrade},
+            </if>
+        </set>
+        where spotid = #{spotid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from travel.sopts where spotid = #{spotid}
+    </delete>
+
+</mapper>

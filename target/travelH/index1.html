@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>河南旅游网</title>
+    <script src="static/js/dist/blunder.js"></script>
+    <script src="static/layui/layui.js"></script>
+    <link rel="stylesheet" href="static/css/mian.css">
+    <link rel="stylesheet" href="static/layui/css/layui.css">
+</head>
+<body layui-layout-body>
+    <div id="app">
+        <div class="layui-layout layui-layout-admin">
+             <div class="layui-header">
+                <div class="layui-logo">河南旅游网</div>
+                <ul class="layui-nav layui-layout-left">
+                  <li class="layui-nav-item"></li>
+                    <li class="layui-nav-item"></li>
+                    <li class="layui-nav-item"><a href="order.html">我的订单</a></li>
+                </ul>
+            </div>
+             <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div class="layui-tab layui-tab-card">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">景点预览</li>
+                </ul>
+                <div class="layui-tab-content">
+                     <div id="selectAll" class="layui-tab-item layui-show">
+                         <table id="demo" class="layui-table"  lay-skin="nob" lay-filter="test">
+                            <colgroup>
+                                <col width="20">
+                                <col width="180">
+                                <col width="200">
+                                <col width="100">
+                                <col width="150">
+                                <col width="150">
+                                <col width="100">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>景点预览</th>
+                                <th>景点名</th>
+                                <th>景点所在地</th>
+                                <th>景点级别</th>
+                                <th>门票价格</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbody">
+                            <tr v-for="(spot,i) in spots">
+                                <td>{{spot.spotid}}</td>
+                                <td><img :src="spot.soptimg" alt=""></td>
+                                 <td>{{spot.spotname}}</td>
+                                <td>{{spot.spotcity}}</td>
+                                <td>{{spot.spotgrade}}</td>
+                                <td>{{spot.spotprice}}</td>
+                                <td><a class="layui-btn layui-btn-danger layui-btn-xs" @click = "reserve(i)" href="JavaScript:;">预定</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

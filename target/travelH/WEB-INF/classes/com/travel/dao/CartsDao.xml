@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.dao.CartsDao">
+
+    <resultMap type="com.travel.entity.Carts" id="CartsMap">
+        <result property="cartid" column="cartid" jdbcType="OTHER"/>
+        <result property="spotname" column="spotname" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CartsMap">
+        select
+          cartid, spotname, price, num
+        from travel.carts
+        where cartid = #{cartid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CartsMap">
+        select
+          cartid, spotname, price, num
+        from travel.carts
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="CartsMap">
+        select
+          cartid, spotname, price, num
+        from travel.carts
+        <where>
+            <if test="cartid != null">
+                and cartid = #{cartid}
+            </if>
+            <if test="spotname != null and spotname != ''">
+                and spotname = #{spotname}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="num != null">
+                and num = #{num}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="cartid" useGeneratedKeys="true">
+        insert into travel.carts(spotname, price, num)
+        values (#{spotname}, #{price}, #{num})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update travel.carts
+        <set>
+            <if test="spotname != null and spotname != ''">
+                spotname = #{spotname},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+        </set>
+        where cartid = #{cartid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from travel.carts where cartid = #{cartid}
+    </delete>
+
+</mapper>

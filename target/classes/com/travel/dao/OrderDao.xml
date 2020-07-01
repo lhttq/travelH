@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.dao.OrderDao">
+
+    <resultMap type="com.travel.entity.Order" id="OrderMap">
+        <result property="orderid" column="orderid" jdbcType="OTHER"/>
+        <result property="ordernum" column="ordernum" jdbcType="VARCHAR"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+        <result property="soptname" column="soptname" jdbcType="VARCHAR"/>
+        <result property="userid" column="userid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderMap">
+        select
+          orderid, ordernum, num, soptname, userid
+        from travel.order
+        where orderid = #{orderid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderMap">
+        select
+          orderid, ordernum, num, soptname, userid
+        from travel.order
+        limit #{offset}, #{limit}
+    </select>
+ <select id="selectAll" resultMap="OrderMap">
+        select
+          orderid, ordernum, num, soptname, userid
+        from travel.order
+    </select>
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="OrderMap">
+        select
+          orderid, ordernum, num, soptname, userid
+        from travel.order
+        <where>
+            <if test="orderid != null">
+                and orderid = #{orderid}
+            </if>
+            <if test="ordernum != null and ordernum != ''">
+                and ordernum = #{ordernum}
+            </if>
+            <if test="num != null">
+                and num = #{num}
+            </if>
+            <if test="soptname != null and soptname != ''">
+                and soptname = #{soptname}
+            </if>
+            <if test="userid != null">
+                and userid = #{userid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="orderid" useGeneratedKeys="true">
+        insert into travel.order(ordernum, num, soptname, userid)
+        values (#{ordernum}, #{num}, #{soptname}, #{userid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update travel.order
+        <set>
+            <if test="ordernum != null and ordernum != ''">
+                ordernum = #{ordernum},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="soptname != null and soptname != ''">
+                soptname = #{soptname},
+            </if>
+            <if test="userid != null">
+                userid = #{userid},
+            </if>
+        </set>
+        where orderid = #{orderid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from travel.order where orderid = #{orderid}
+    </delete>
+
+</mapper>

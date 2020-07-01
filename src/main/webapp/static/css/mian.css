@@ -1,0 +1,27 @@
+@import url("//unpkg.com/element-ui@2.13.2/lib/theme-chalk/index.css");
+* {
+  margin: 0;
+  padding: 0;
+}
+.content p {
+  font-family: "Adobe Devanagari", "JetBrains Mono";
+}
+.router-link-active {
+  background-color: #00F7DE;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.8s ease;
+}
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.v-move {
+  transition: all 0.8s ease;
+}
+.v-leave-active {
+  position: absolute;
+}
+/*# sourceMappingURL=mian.css.map */

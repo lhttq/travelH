@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详情</title>
+    <link rel="stylesheet" href="static/css/detail.css">
+    <link rel="stylesheet" href="static/layui/css/layui.css">
+    <script src="static/js/dist/detail.js"></script>
+    <script src="static/layui/layui.js"></script>
+</head>
+<body>
+    <div id="app">
+           <div class="layui-tab-content">
+             <div id="selectAll" class="layui-tab-item layui-show">
+                 <table id="demo" class="layui-table"  lay-skin="nob" lay-filter="test">
+                    <colgroup>
+                        <col width="20">
+                        <col width="180">
+                        <col width="200">
+                        <col width="100">
+                        <col width="150">
+                        <col width="150">
+                        <col width="150">
+                        <col width="100">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>景点预览</th>
+                        <th>景点名</th>
+                        <th>景点所在地</th>
+                        <th>景点级别</th>
+                        <th>门票价格</th>
+                        <th>数量</th>
+                        <th>支付</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    <tr>
+                        <td>{{spot.spotid}}</td>
+                        <td><img :src="spot.soptimg" alt=""></td>
+                         <td>{{spot.spotname}}</td>
+                        <td>{{spot.spotcity}}</td>
+                        <td>{{spot.spotgrade}}</td>
+                        <td>{{spot.spotprice}}</td>
+                        <td> <button class="layui-btn layui-btn-primary layui-btn-sm"
+                                     @click="sub">-
+                        </button>
+                            {{num}}
+                            <button class="layui-btn layui-btn-primary layui-btn-sm"
+                                    @click="add">+
+                            </button>
+                        </td>
+                        <td><a class="layui-btn layui-btn-danger layui-btn-xs" @click = "reserve"
+                               href="JavaScript:;">预定</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
