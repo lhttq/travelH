@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.3.2",
     "webpack-cli": "^3.3.11"
